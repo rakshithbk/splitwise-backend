@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>splitwise_setu</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        <li>
+            <a href="#request-users">/users</a>
+        </li>
+        
+        <li>
+            <a href="#request-groups">/groups</a>
+        </li>
+        
+        <li>
+            <a href="#request-users-12474847">/users/12474847</a>
+        </li>
+        
+        <li>
+            <a href="#request-groups-e2e44673">/groups/e2e44673</a>
+        </li>
+        
+        <li>
+            <a href="#request-transactions">/transactions</a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>splitwise_setu</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+                
+                <div class="request">
+
+                    <h3 id="request-users">
+                        /users
+                        <a href="#request-users"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-users-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-users-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-users-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "name": "rakshith",
+    "email": "abc"
+}' "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/users"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-users-example-http">
+                                <pre><code class="hljs http">POST /prod/users HTTP/1.1
+Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
+
+{
+    "name": "rakshith",
+    "email": "abc"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-users-responses-4850dace-5acd-4b1a-acb0-b596a41d149c" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-users-responses-4850dace-5acd-4b1a-acb0-b596a41d149c">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>68</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 10 Dec 2021 21:37:01 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amzn-RequestId</th><td>acea96a4-1363-45bc-a500-d1b58d696c87</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amz-apigw-id</th><td>KJxDlEi2BcwFf9g=</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amzn-Trace-Id</th><td>Root=1-61b3c87d-22c3b63b229bbb2e07320a7d;Sampled=0</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Cache</th><td>Miss from cloudfront</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Via</th><td>1.1 90a53dbf74de33635dc01ae4f6b3e737.cloudfront.net (CloudFront)</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Pop</th><td>BLR50-C3</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Id</th><td>9AbzzYc8Lhy814o8ScobhHj2gF25Q-2Y9yFU3qmqDI-mk6K1fte__g==</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "status": "success",
+    "message": "user alex",
+    "user_id": "12474847"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-groups">
+                        /groups
+                        <a href="#request-groups"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div><p>Create new groups</p>
+</div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-groups-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-groups-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-groups-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "name": "new_group_2",
+    "members": ["12474847"]
+}' "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/groups"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-groups-example-http">
+                                <pre><code class="hljs http">POST /prod/groups HTTP/1.1
+Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
+
+{
+    "name": "new_group_2",
+    "members": ["12474847"]
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-groups-responses-63eddfc0-54cd-4c6b-949e-53d7665d51d3" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-groups-responses-63eddfc0-54cd-4c6b-949e-53d7665d51d3">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>77</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 10 Dec 2021 21:38:06 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amzn-RequestId</th><td>b1e0756c-75d8-428a-b80d-c501c05074b3</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amz-apigw-id</th><td>KJxN2FMahcwFXQw=</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amzn-Trace-Id</th><td>Root=1-61b3c8be-534c7c6015ee52967eb2791f;Sampled=0</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Cache</th><td>Miss from cloudfront</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Via</th><td>1.1 90a53dbf74de33635dc01ae4f6b3e737.cloudfront.net (CloudFront)</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Pop</th><td>BLR50-C3</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Id</th><td>z_9UWHJJiU1uJtD8tqubbgspbA31gnXVCLrrN9raCt0OvcvC_5PjHA==</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "status": "success",
+    "message": "group new_group_2",
+    "group_id": "e2e44673"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-users-12474847">
+                        /users/12474847
+                        <a href="#request-users-12474847"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-users-12474847-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-users-12474847-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-users-12474847-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/users/12474847"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-users-12474847-example-http">
+                                <pre><code class="hljs http">GET /prod/users/12474847 HTTP/1.1
+Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-users-12474847-responses-8a23502c-b653-4d23-842c-57849baa44c3" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-users-12474847-responses-8a23502c-b653-4d23-842c-57849baa44c3">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>77</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 10 Dec 2021 21:39:53 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amzn-RequestId</th><td>6f69da7e-c608-4c17-bc4a-0ad107096951</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amz-apigw-id</th><td>KJxeiFhgBcwFScQ=</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amzn-Trace-Id</th><td>Root=1-61b3c929-697c647309cfe89431bcf818;Sampled=0</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Cache</th><td>Miss from cloudfront</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Via</th><td>1.1 90a53dbf74de33635dc01ae4f6b3e737.cloudfront.net (CloudFront)</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Pop</th><td>BLR50-C3</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Id</th><td>oJcqKAK5HSDnhEwCfUqplJppZr4rgl5lwRBn4A7ZpgM1cCAh1h9org==</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "status": "success",
+    "name": "alex",
+    "email": "abc",
+    "groups": [
+        "e2e44673"
+    ]
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-groups-e2e44673">
+                        /groups/e2e44673
+                        <a href="#request-groups-e2e44673"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-groups-e2e44673-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-groups-e2e44673-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-groups-e2e44673-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/groups/e2e44673"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-groups-e2e44673-example-http">
+                                <pre><code class="hljs http">GET /prod/groups/e2e44673 HTTP/1.1
+Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-groups-e2e44673-responses-de732208-ead8-441a-9994-1c5e92e6c368" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-groups-e2e44673-responses-de732208-ead8-441a-9994-1c5e92e6c368">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>132</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Sat, 11 Dec 2021 06:17:24 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amzn-RequestId</th><td>0131b780-a757-49d3-906c-f303cb32e2fe</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amz-apigw-id</th><td>KK9SIGDYBcwFkeg=</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amzn-Trace-Id</th><td>Root=1-61b44273-523ab1326edae353707aa533;Sampled=0</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Cache</th><td>Miss from cloudfront</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Via</th><td>1.1 ee3042806ab6888e04bc50074c71a45b.cloudfront.net (CloudFront)</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Pop</th><td>BLR50-C3</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Id</th><td>Mklwass2S-4zdduNoqiHae0Jdv25Qxv52ovSJRMDaoSBSkTs3miEhQ==</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "status": "success",
+    "name": "new_group_2",
+    "members": [
+        "12474847",
+        "595e2"
+    ],
+    "transactions": [
+        "d56bf0db28c2436e975d0d9388042938"
+    ]
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-transactions">
+                        /transactions
+                        <a href="#request-transactions"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-transactions-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-transactions-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-transactions-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "name": "weekend_trip",
+    "total_amount": 1500,
+    "group_id": "e2e44673",
+    "participants": ["12474847"],
+    "payers": {"12474847": 1500}
+}' "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/transactions"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-transactions-example-http">
+                                <pre><code class="hljs http">POST /prod/transactions HTTP/1.1
+Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
+
+{
+    "name": "weekend_trip",
+    "total_amount": 1500,
+    "group_id": "e2e44673",
+    "participants": ["12474847"],
+    "payers": {"12474847": 1500}
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-transactions-responses-d5e35654-e361-4ef9-b952-f4e35c872c3e" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-transactions-responses-d5e35654-e361-4ef9-b952-f4e35c872c3e">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>108</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Sat, 11 Dec 2021 04:56:46 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amzn-RequestId</th><td>3a0235c1-c89a-4ee8-a6a9-f0dfeb968b30</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">x-amz-apigw-id</th><td>KKxeGFFChcwFqlg=</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amzn-Trace-Id</th><td>Root=1-61b42f8d-7cdbc1262cdf77f24cfeb9fa;Sampled=0</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Cache</th><td>Miss from cloudfront</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Via</th><td>1.1 d9326ccd9209864381f276d84e72b9ba.cloudfront.net (CloudFront)</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Pop</th><td>BLR50-C3</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Amz-Cf-Id</th><td>m6b5RI_StCIrAYuHV-rzL1aRRx791EhaWHWMJJeVkki039Q7zbnJeg==</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "status": "success",
+    "message": "transaction weekend_trip",
+    "trans_id": "d56bf0db28c2436e975d0d9388042938"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>
