@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>splitwise_setu</title>
+    <title>splitwise_backend</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
@@ -175,6 +175,10 @@ pre code {
             <a href="#request-transactions">/transactions</a>
         </li>
         
+        <li>
+            <a href="#request-summary-e2e44673">/summary/e2e44673</a>
+        </li>
+        
         
     </ul>
 </div>
@@ -184,7 +188,7 @@ pre code {
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1>splitwise_setu</h1>
+                <h1>splitwise_backend</h1>
 
                 <h2 id="doc-general-notes">
                     General notes
@@ -219,16 +223,16 @@ pre code {
                         <div class="tab-content">
                             <div class="tab-pane active" id="request-users-example-curl">
                                 <pre><code class="hljs curl">curl -X POST -d '{
-    "name": "rakshith",
+    "name": "friend_1",
     "email": "abc"
-}' "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/users"</code></pre>
+}' "https://8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com/prod/users"</code></pre>
                             </div>
                             <div class="tab-pane" id="request-users-example-http">
                                 <pre><code class="hljs http">POST /prod/users HTTP/1.1
-Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
+Host: 8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com
 
 {
-    "name": "rakshith",
+    "name": "friend_1",
     "email": "abc"
 }</code></pre>
                             </div>
@@ -240,7 +244,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
                         <ul class="nav nav-tabs" role="tablist">
                             
                             <li role="presentation" class="active">
-                                <a href="#request-users-responses-4850dace-5acd-4b1a-acb0-b596a41d149c" data-toggle="tab">
+                                <a href="#request-users-responses-ff4f351f-fdb3-4f1a-b2ed-2ed703c351f3" data-toggle="tab">
                                     
                                     Response
                                     
@@ -250,7 +254,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
                         </ul>
                         <div class="tab-content">
                             
-                            <div class="tab-pane active" id="request-users-responses-4850dace-5acd-4b1a-acb0-b596a41d149c">
+                            <div class="tab-pane active" id="request-users-responses-ff4f351f-fdb3-4f1a-b2ed-2ed703c351f3">
                                 <table class="table table-bordered">
                                     <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
                                     
@@ -316,17 +320,17 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
                         <div class="tab-content">
                             <div class="tab-pane active" id="request-groups-example-curl">
                                 <pre><code class="hljs curl">curl -X POST -d '{
-    "name": "new_group_2",
-    "members": ["12474847"]
-}' "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/groups"</code></pre>
+    "name": "new_group_test",
+    "members": ["c45e165b" , "dc4df59c" , "4116ddc1"]
+}' "https://8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com/prod/groups"</code></pre>
                             </div>
                             <div class="tab-pane" id="request-groups-example-http">
                                 <pre><code class="hljs http">POST /prod/groups HTTP/1.1
-Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
+Host: 8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com
 
 {
-    "name": "new_group_2",
-    "members": ["12474847"]
+    "name": "new_group_test",
+    "members": ["c45e165b" , "dc4df59c" , "4116ddc1"]
 }</code></pre>
                             </div>
                         </div>
@@ -337,7 +341,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
                         <ul class="nav nav-tabs" role="tablist">
                             
                             <li role="presentation" class="active">
-                                <a href="#request-groups-responses-63eddfc0-54cd-4c6b-949e-53d7665d51d3" data-toggle="tab">
+                                <a href="#request-groups-responses-1066e6af-1b1e-4057-b8e6-bf2da34283fe" data-toggle="tab">
                                     
                                     Response
                                     
@@ -347,7 +351,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
                         </ul>
                         <div class="tab-content">
                             
-                            <div class="tab-pane active" id="request-groups-responses-63eddfc0-54cd-4c6b-949e-53d7665d51d3">
+                            <div class="tab-pane active" id="request-groups-responses-1066e6af-1b1e-4057-b8e6-bf2da34283fe">
                                 <table class="table table-bordered">
                                     <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
                                     
@@ -411,11 +415,11 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="request-users-12474847-example-curl">
-                                <pre><code class="hljs curl">curl -X GET "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/users/12474847"</code></pre>
+                                <pre><code class="hljs curl">curl -X GET "https://8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com/prod/users/4116ddc1"</code></pre>
                             </div>
                             <div class="tab-pane" id="request-users-12474847-example-http">
-                                <pre><code class="hljs http">GET /prod/users/12474847 HTTP/1.1
-Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
+                                <pre><code class="hljs http">GET /prod/users/4116ddc1 HTTP/1.1
+Host: 8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com</code></pre>
                             </div>
                         </div>
                     </div>
@@ -425,7 +429,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
                         <ul class="nav nav-tabs" role="tablist">
                             
                             <li role="presentation" class="active">
-                                <a href="#request-users-12474847-responses-8a23502c-b653-4d23-842c-57849baa44c3" data-toggle="tab">
+                                <a href="#request-users-12474847-responses-c657d6f1-da1d-45e2-bfa5-b95dbbc75b17" data-toggle="tab">
                                     
                                     Response
                                     
@@ -435,7 +439,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
                         </ul>
                         <div class="tab-content">
                             
-                            <div class="tab-pane active" id="request-users-12474847-responses-8a23502c-b653-4d23-842c-57849baa44c3">
+                            <div class="tab-pane active" id="request-users-12474847-responses-c657d6f1-da1d-45e2-bfa5-b95dbbc75b17">
                                 <table class="table table-bordered">
                                     <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
                                     
@@ -502,11 +506,11 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="request-groups-e2e44673-example-curl">
-                                <pre><code class="hljs curl">curl -X GET "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/groups/e2e44673"</code></pre>
+                                <pre><code class="hljs curl">curl -X GET "https://8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com/prod/groups/da3ab51e"</code></pre>
                             </div>
                             <div class="tab-pane" id="request-groups-e2e44673-example-http">
-                                <pre><code class="hljs http">GET /prod/groups/e2e44673 HTTP/1.1
-Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
+                                <pre><code class="hljs http">GET /prod/groups/da3ab51e HTTP/1.1
+Host: 8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com</code></pre>
                             </div>
                         </div>
                     </div>
@@ -516,7 +520,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
                         <ul class="nav nav-tabs" role="tablist">
                             
                             <li role="presentation" class="active">
-                                <a href="#request-groups-e2e44673-responses-de732208-ead8-441a-9994-1c5e92e6c368" data-toggle="tab">
+                                <a href="#request-groups-e2e44673-responses-3a807225-4c8f-4205-98fa-caddec5e1ea4" data-toggle="tab">
                                     
                                     Response
                                     
@@ -526,7 +530,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
                         </ul>
                         <div class="tab-content">
                             
-                            <div class="tab-pane active" id="request-groups-e2e44673-responses-de732208-ead8-441a-9994-1c5e92e6c368">
+                            <div class="tab-pane active" id="request-groups-e2e44673-responses-3a807225-4c8f-4205-98fa-caddec5e1ea4">
                                 <table class="table table-bordered">
                                     <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
                                     
@@ -597,23 +601,23 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com</code></pre>
                         <div class="tab-content">
                             <div class="tab-pane active" id="request-transactions-example-curl">
                                 <pre><code class="hljs curl">curl -X POST -d '{
-    "name": "weekend_trip",
-    "total_amount": 1500,
-    "group_id": "e2e44673",
-    "participants": ["12474847"],
-    "payers": {"12474847": 1500}
-}' "https://83dfote3wl.execute-api.ap-south-1.amazonaws.com/prod/transactions"</code></pre>
+    "name": "weekend_trip 3",
+    "total_amount": 1000,
+    "group_id": "da3ab51e",
+    "participants": ["c45e165b", "dc4df59c", "4116ddc1"],
+    "payers": {"dc4df59c": 1000}
+}' "https://8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com/prod/transactions"</code></pre>
                             </div>
                             <div class="tab-pane" id="request-transactions-example-http">
                                 <pre><code class="hljs http">POST /prod/transactions HTTP/1.1
-Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
+Host: 8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com
 
 {
-    "name": "weekend_trip",
-    "total_amount": 1500,
-    "group_id": "e2e44673",
-    "participants": ["12474847"],
-    "payers": {"12474847": 1500}
+    "name": "weekend_trip 3",
+    "total_amount": 1000,
+    "group_id": "da3ab51e",
+    "participants": ["c45e165b", "dc4df59c", "4116ddc1"],
+    "payers": {"dc4df59c": 1000}
 }</code></pre>
                             </div>
                         </div>
@@ -624,7 +628,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
                         <ul class="nav nav-tabs" role="tablist">
                             
                             <li role="presentation" class="active">
-                                <a href="#request-transactions-responses-d5e35654-e361-4ef9-b952-f4e35c872c3e" data-toggle="tab">
+                                <a href="#request-transactions-responses-bd058d46-a84c-45e7-b68e-3d22db1533a9" data-toggle="tab">
                                     
                                     Response
                                     
@@ -634,7 +638,7 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
                         </ul>
                         <div class="tab-content">
                             
-                            <div class="tab-pane active" id="request-transactions-responses-d5e35654-e361-4ef9-b952-f4e35c872c3e">
+                            <div class="tab-pane active" id="request-transactions-responses-bd058d46-a84c-45e7-b68e-3d22db1533a9">
                                 <table class="table table-bordered">
                                     <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
                                     
@@ -667,6 +671,91 @@ Host: 83dfote3wl.execute-api.ap-south-1.amazonaws.com
     "status": "success",
     "message": "transaction weekend_trip",
     "trans_id": "d56bf0db28c2436e975d0d9388042938"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-summary-e2e44673">
+                        /summary/e2e44673
+                        <a href="#request-summary-e2e44673"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-summary-e2e44673-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-summary-e2e44673-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-summary-e2e44673-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "https://8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com/prod/summary/da3ab51e"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-summary-e2e44673-example-http">
+                                <pre><code class="hljs http">GET /prod/summary/da3ab51e HTTP/1.1
+Host: 8dxr6y8z7e.execute-api.ap-south-1.amazonaws.com</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-summary-e2e44673-responses-6d6b3e87-d2e4-4b37-85eb-727dacb16cdd" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-summary-e2e44673-responses-6d6b3e87-d2e4-4b37-85eb-727dacb16cdd">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>215</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Server</th><td>Werkzeug/1.0.1 Python/3.8.8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Sun, 26 Dec 2021 12:51:15 GMT</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "c45e165b": {
+        "4116ddc1": "200.00"
+    },
+    "4116ddc1": {
+        "c45e165b": "-200.00",
+        "dc4df59c": "-200.00"
+    },
+    "dc4df59c": {
+        "4116ddc1": "200.00"
+    },
+    "details": [
+        "Rak should pay Rs.200.00 to dad",
+        "Rak should pay Rs.200.00 to mom"
+    ]
 }</code></pre>
                                     </td></tr>
                                     

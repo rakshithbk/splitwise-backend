@@ -91,29 +91,14 @@ def add_new_transaction(event):
 
 
 def calculate_balances(total_amount, payers, participants):
-    per_person = round((total_amount / len(participants)), 2)
+    per_person = (total_amount / len(participants))
     payables = {}
     for person in participants:
-        payables[person] = per_person
+        payables[person] = -per_person
     for person in payers:
-        payables[person] = per_person - payers[person]
+        payables[person] = payers[person] - per_person
     print(f"calculating balances - {payables}")
-
-    resolve_payables = defaultdict(dict)
-    for person in payables:
-        if payables[person] < 0:
-            receivable = -payables[person]
-            for payer in payables:
-                if payables[payer] <= 0:
-                    continue
-                ret = min(receivable, payables[payer])
-                payables[payer] -= ret
-                receivable -= ret
-                resolve_payables[person][payer] = ret
-                if receivable == 0:
-                    break
-    print(f"resolved payables for each payer - {resolve_payables}")
-    return dict(resolve_payables)
+    return payables
 
 
 def add_trans_to_group(groupid, transactionid):

@@ -1,6 +1,7 @@
 import os
 import json
 import boto3
+from copy import deepcopy
 from collections import defaultdict
 from decimal import Decimal
 from botocore.exceptions import ClientError
@@ -15,6 +16,7 @@ ddb = boto3.resource('dynamodb')
 user_table_name = os.environ.get('USER_TABLE')
 group_table_name = os.environ.get('GROUP_TABLE')
 trans_table_name = os.environ.get('TRANS_TABLE')
+
 
 try:
     user_table = ddb.Table(user_table_name)
@@ -51,13 +53,103 @@ def computed_transaction(event):
         return response(500, {'error': 'unable to resolve transactions for provided group_id'})
 
     # compute payables and return
-    consolidated_payables = defaultdict(dict)
+    user_amounts = {}
+
     for trans in transactions_list:
-        for receiver in trans:
-            for payer in trans[receiver]:
-                consolidated_payables[receiver][payer] = consolidated_payables[receiver].get(payer, 0) + trans[receiver][payer]
-    print(f"consolidated payable - {consolidated_payables}")
-    return response(200, dict(consolidated_payables))
+        for party in trans:
+            user_amounts[party] = user_amounts.get(party, 0) + trans[party]
+
+    settlements = simplify_settlements(user_amounts)
+    if settlements is None:
+        return response(500, {'error': 'transaction amounts mismatch, double entry transactions does not add to zero'})
+    return response(200, settlements)
+
+
+def simplify_settlements(final_amounts):
+    total = 0
+    for user in final_amounts:
+        total += final_amounts[user]
+    if abs(total) >= 0.1:
+        print(f"final total amounts does not add up to 0 ({total}). mismatch - {final_amounts}")
+        return None
+    
+    consolidated_payables = defaultdict(dict)
+    min_cash_flow(final_amounts, consolidated_payables)
+    detailed_list = detailed_settlement_list(consolidated_payables)
+    
+    settlements = dict(consolidated_payables)
+    settlements['details'] = detailed_list
+    return settlements
+
+
+def get_min_usr(amounts):
+    
+    minusr = next(iter(amounts))
+    for user in amounts:
+        if (amounts[user] < amounts[minusr]):
+            minusr = user
+    return minusr
+
+
+def get_max_usr(amounts):
+
+    maxusr = next(iter(amounts))
+    for user in amounts:
+        if (amounts[user] > amounts[maxusr]):
+            maxusr = user
+    return maxusr
+
+
+def min_cash_flow(amount, final_settle):
+
+    max_creditor = get_max_usr(amount)
+    min_debitor = get_min_usr(amount)
+
+    # If both amounts are 0 (or near, due to float precision), then all amounts are settled
+    if (abs(amount[max_creditor]) <= 0.1 and abs(amount[min_debitor]) <= 0.1):
+        return 0
+
+    min_amount = min(-amount[min_debitor], amount[max_creditor])
+    amount[max_creditor] -=min_amount
+    amount[min_debitor] += min_amount
+
+    # store the settlement details in defaultdict(dict)
+    final_settle[max_creditor][min_debitor] = round(min_amount, 2)
+    final_settle[min_debitor][max_creditor] = round(-min_amount, 2)
+
+    min_cash_flow(amount, final_settle)
+
+
+def detailed_settlement_list(consolidated_payables):
+    user_ids = []
+    user_id_name = {}
+    for user in consolidated_payables:
+        user_ids.append(user)
+    
+    for userid in user_ids:
+        try:
+            ret = user_table.get_item(
+                Key={
+                    'user_id' : userid
+                }
+            )
+        except Exception as e:
+            print(f"Exception in fetching username for {userid} - {e}")
+
+        if 'Item' in ret:
+            user_id_name[userid] = ret['Item']['name']
+        else:
+            print(f"error user id not found - {userid}")
+            user_id_name[userid] = "<unknown>"
+    
+    details = []
+    payables = deepcopy(consolidated_payables)
+    for parties in payables:
+        for payer in payables[parties]:
+            if payables[parties][payer] > 0:
+                details.append(f"{user_id_name[payer]} should pay Rs.{payables[parties][payer]} to {user_id_name[parties]}")
+                payables[payer].pop(parties)
+    return details
 
 
 def get_transactions(trans_ids):

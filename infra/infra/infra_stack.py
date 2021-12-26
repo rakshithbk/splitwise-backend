@@ -15,7 +15,7 @@ class InfraStack(cdk.Stack):
         # DDB table
         user_table = ddb.Table(
             self, "registered_users",
-            table_name="registered_users",
+            table_name="splitwise_registered_users",
             partition_key=ddb.Attribute(
                 name='user_id', 
                 type=ddb.AttributeType.STRING
@@ -24,7 +24,7 @@ class InfraStack(cdk.Stack):
 
         transactions_table = ddb.Table(
             self, "transactions",
-            table_name="transactions",
+            table_name="splitwise_transactions",
             partition_key=ddb.Attribute(
                 name='trans_id', 
                 type=ddb.AttributeType.STRING
@@ -33,7 +33,7 @@ class InfraStack(cdk.Stack):
 
         groups_table = ddb.Table(
             self, "user_groups",
-            table_name="user_groups",
+            table_name="splitwise_user_groups",
             partition_key=ddb.Attribute(
                 name='group_id', 
                 type=ddb.AttributeType.STRING
@@ -43,6 +43,7 @@ class InfraStack(cdk.Stack):
         # Create Lambda handlers
         create_user_lambda = lambda_.Function(
             self, "create_user_func",
+            function_name= "splitwise_create_user_func",
             runtime=lambda_.Runtime.PYTHON_3_8,
             code=lambda_.Code.from_asset('../backend'),
             handler="user_mgr.lambda_handler",
@@ -53,6 +54,7 @@ class InfraStack(cdk.Stack):
 
         create_group_lambda = lambda_.Function(
             self, "create_group_func",
+            function_name= "splitwise_create_group_func",
             runtime=lambda_.Runtime.PYTHON_3_8,
             code=lambda_.Code.from_asset('../backend'),
             handler="group_mgr.lambda_handler",
@@ -65,6 +67,7 @@ class InfraStack(cdk.Stack):
 
         transactions_lambda = lambda_.Function(
             self, "transactions_func",
+            function_name= "splitwise_transactions_func",
             runtime=lambda_.Runtime.PYTHON_3_8,
             code=lambda_.Code.from_asset('../backend'),
             handler="transaction_mgr.lambda_handler",
@@ -77,6 +80,7 @@ class InfraStack(cdk.Stack):
 
         summary_lambda = lambda_.Function(
             self, "summary_func",
+            function_name= "splitwise_summary_func",
             runtime=lambda_.Runtime.PYTHON_3_8,
             code=lambda_.Code.from_asset('../backend'),
             handler="summary_mgr.lambda_handler",
@@ -118,7 +122,7 @@ class InfraStack(cdk.Stack):
 
 
         # API gateway
-        api = apigateway.RestApi(self, "setu_splitwise")
+        api = apigateway.RestApi(self, "splitwise_clone")
 
         # lambda gateway integration
         create_user_integration = apigateway.LambdaIntegration(create_user_lambda)
@@ -141,4 +145,33 @@ class InfraStack(cdk.Stack):
         summary_endpoint = api.root.add_resource('summary')
         summary_endpoint.add_resource('{group_id}').add_method('GET', summary_integration)
 
+        api.root.add_method("ANY", 
+            apigateway.MockIntegration(
+                integration_responses=[
+                    {
+                        "statusCode": "200",
+                        "responseTemplates": {
+                            "application/json": '{"message": "Splitwise clone. link - https://github.com/rakshithbk/splitwise-backend"}'
+                        }
+                    }
+                ],
+                passthrough_behavior=apigateway.PassthroughBehavior.NEVER,
+                request_templates={
+                    "application/json": '{ "statusCode": 200 }'
+                }
+            ), 
+            method_responses= [
+                {
+                    "statusCode": "200",
+                    "responseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": True,
+                    "method.response.header.Access-Control-Allow-Methods": True,
+                    "method.response.header.Access-Control-Allow-Headers": True
+                    }
+                }
+            ]
+        )
 
+# further upgrades - 
+# 1. add cognito api gateway Authentication - https://bobbyhadz.com/blog/aws-cdk-api-authorizer
+# 2. 
